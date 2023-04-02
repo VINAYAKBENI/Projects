@@ -12,16 +12,16 @@ class ApiOperations {
 
   static const String _apikey =
       'JBtv11nnbJieYq2sUM6RQYYpwPlhkiWMkw6jiJ4z1sdPi4l1aQl3G5bR';
-      
+
   static Future<List<PhotosModel>> getTrendingWallpaper() async {
     await http.get(
-      Uri.parse('https://api.pexels.com/v1/curated'),
+      Uri.parse('https://api.pexels.com/v1/curated?per_page=80'),
       headers: {'Authorization': _apikey},
     ).then(
       (value) {
-        // print(value.body);
         Map<String, dynamic> jsonData = jsonDecode(value.body);
         List photos = jsonData['photos'];
+        photos.shuffle();
         for (var element in photos) {
           trendingWallpapers.add(PhotosModel.fromApi2App(element));
         }
@@ -33,16 +33,15 @@ class ApiOperations {
   static Future<List<PhotosModel>> searchWallpapers(String query) async {
     await http.get(
       Uri.parse(
-          'https://api.pexels.com/v1/search?query=$query&per_page=30&page=1'),
-      headers: {
-        'Authorization': _apikey
-      },
+          'https://api.pexels.com/v1/search?query=$query&per_page=80&page=1'),
+      headers: {'Authorization': _apikey},
     ).then(
       (value) {
         // print(value.body);
         Map<String, dynamic> jsonData = jsonDecode(value.body);
         List photos = jsonData['photos'];
         serachWallpapersList.clear();
+        photos.shuffle();
 
         for (var element in photos) {
           serachWallpapersList.add(PhotosModel.fromApi2App(element));
@@ -67,7 +66,7 @@ class ApiOperations {
       final random = Random();
 
       PhotosModel photoModel = (await searchWallpapers(catName)
-          as dynamic)[0 + random.nextInt(11 - 0)];
+          as dynamic)[0 + random.nextInt(50)];
 
       cateogryModelList
           .add(CategoryModel(catImgUrl: photoModel.imgSrc, catName: catName));

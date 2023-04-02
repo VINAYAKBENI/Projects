@@ -37,7 +37,8 @@ dependencies:
   cupertino_icons: ^1.0.2
   http: any
   gallery_saver: ^2.3.2
-  open_file: ^3.2.1
+  flutter_wallpaper_manager: ^0.0.3
+  flutter_cache_manager: ^3.3.0
 
 dev_dependencies:
   flutter_test:
