@@ -17,19 +17,69 @@ class FullScreen extends StatefulWidget {
 class _FullScreenState extends State<FullScreen> {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
-  Future<void> setWallpaper() async {
+  Future<void> setWallpaper(String wallSreeen) async {
     try {
-      int location = WallpaperManager.BOTH_SCREEN;
+      int location;
+      if (wallSreeen == 'Home') {
+        location = WallpaperManager.HOME_SCREEN;
+      } else if (wallSreeen == 'Lock') {
+        location = WallpaperManager.LOCK_SCREEN;
+      } else {
+        location = WallpaperManager.BOTH_SCREEN;
+      }
       var file = await DefaultCacheManager().getSingleFile(widget.imgUrl);
       // ignore: unused_local_variable
       bool result =
           await WallpaperManager.setWallpaperFromFile(file.path, location);
-      ScaffoldMessenger.of(context)
-          .showSnackBar(const SnackBar(content: Text("Wallpaper Set on Lock and Home Screen")));
+      ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text("Wallpaper Set Succesfully")));
     } on PlatformException catch (error) {
       ScaffoldMessenger.of(context)
           .showSnackBar(SnackBar(content: Text("Error Occured - $error")));
     }
+  }
+
+  Future<dynamic> bottomSheet(BuildContext context) {
+    return showModalBottomSheet(
+      context: context,
+      builder: (context) {
+        return SizedBox(
+          height: 150,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              InkWell(
+                  child: const Text(
+                    'Home Screen',
+                    style: TextStyle(fontSize: 17),
+                  ),
+                  onTap: () {
+                    Navigator.pop(context);
+                    setWallpaper('Home');
+                  }),
+              InkWell(
+                  child: const Text(
+                    'Lock Screen',
+                    style: TextStyle(fontSize: 17),
+                  ),
+                  onTap: () {
+                    Navigator.pop(context);
+                    setWallpaper('Lock');
+                  }),
+              InkWell(
+                  child: const Text(
+                    'Home And Lock Screen',
+                    style: TextStyle(fontSize: 17),
+                  ),
+                  onTap: () {
+                    Navigator.pop(context);
+                    setWallpaper('Both');
+                  }),
+            ],
+          ),
+        );
+      },
+    );
   }
 
   Future<void> saveWallpaper(String wallpaperUrl, BuildContext context) async {
@@ -69,8 +119,7 @@ class _FullScreenState extends State<FullScreen> {
           //SizedBox(width: 20),
           ElevatedButton(
               onPressed: () async {
-                //await setWallpaperFromFile(imgUrl, context);
-                setWallpaper();
+                bottomSheet(context);
               },
               child: const Text('Set as Wallpaper'))
         ],
