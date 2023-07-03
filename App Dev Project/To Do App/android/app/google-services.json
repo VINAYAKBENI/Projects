@@ -7,14 +7,22 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:593071087238:android:7e286f5dd233cf7c137b07",
+        "mobilesdk_app_id": "1:593071087238:android:35f4606491fc6075137b07",
         "android_client_info": {
-          "package_name": "com.example.todo"
+          "package_name": "com.beni.todo"
         }
       },
       "oauth_client": [
         {
-          "client_id": "593071087238-o1rb80ucrqee4938k93p37vah7pskos2.apps.googleusercontent.com",
+          "client_id": "593071087238-1vaj42qhn7eqv9kgf31ij54sdik7bgv0.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.beni.todo",
+            "certificate_hash": "e99db21dffaf924111f5ca8769d1c498204d8f52"
+          }
+        },
+        {
+          "client_id": "593071087238-9s1tsrfqronnnvlvuur2h2vvsgeh0iec.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
@@ -27,7 +35,7 @@
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "593071087238-o1rb80ucrqee4938k93p37vah7pskos2.apps.googleusercontent.com",
+              "client_id": "593071087238-9s1tsrfqronnnvlvuur2h2vvsgeh0iec.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
