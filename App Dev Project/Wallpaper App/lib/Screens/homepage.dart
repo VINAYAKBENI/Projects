@@ -58,7 +58,7 @@ class _HomeScreenState extends State<HomeScreen> {
           : SingleChildScrollView(
               child: Column(
                 children: [
-                  SearchBar(),
+                 MySearchBar(),
                   Container(
                     margin: const EdgeInsets.only(bottom: 20),
                     height: 50,

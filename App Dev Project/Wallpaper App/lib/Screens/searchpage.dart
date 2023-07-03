@@ -47,7 +47,7 @@ class _SearchScreenState extends State<SearchScreen> {
           : SingleChildScrollView(
               child: Column(
                 children: [
-                  SearchBar(),
+                  MySearchBar(),
                   Container(
                     margin: const EdgeInsets.symmetric(horizontal: 15),
                     height: MediaQuery.of(context).size.height - 200,

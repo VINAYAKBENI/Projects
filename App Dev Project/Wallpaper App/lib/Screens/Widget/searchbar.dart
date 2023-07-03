@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:wallpaper_app/Screens/searchpage.dart';
 
 // ignore: must_be_immutable
-class SearchBar extends StatelessWidget {
-  SearchBar({super.key});
+class MySearchBar extends StatelessWidget {
+  MySearchBar({super.key});
 
   final TextEditingController _searchController = TextEditingController();
 
