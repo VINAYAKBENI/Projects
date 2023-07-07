@@ -63,7 +63,7 @@ class HomeState extends State<Home> {
         ),
         body: Column(
           children: [
-            SearchBar(
+            MySearchBar(
               category: category[index],
             ),
             Expanded(

@@ -3,17 +3,17 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:news_app/utils/colors.dart';
 
 // ignore: must_be_immutable
-class SearchBar extends StatefulWidget {
+class MySearchBar extends StatefulWidget {
   String category;
-  SearchBar({super.key,required this.category});
+  MySearchBar({super.key,required this.category});
   static TextEditingController searchcontroller =
       TextEditingController(text: '');
 
   @override
-  State<SearchBar> createState() => _SearchBarState();
+  State<MySearchBar> createState() => _MySearchBarState();
 }
 
-class _SearchBarState extends State<SearchBar> {
+class _MySearchBarState extends State<MySearchBar> {
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -34,7 +34,7 @@ class _SearchBarState extends State<SearchBar> {
                 const SizedBox(height: 10),
                 Expanded(
                     child: TextField(
-                  controller: SearchBar.searchcontroller,
+                  controller: MySearchBar.searchcontroller,
                   decoration: InputDecoration(
                     hintText: 'Search a Keyword or Phrase',
                     hintStyle: GoogleFonts.lato(),
