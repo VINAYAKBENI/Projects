@@ -15,7 +15,7 @@ class Home extends StatefulWidget {
 }
 
 class HomeState extends State<Home> {
-  late Future<List> news;
+  Future<List> news = Future(() => []);
   List category = [
     'general',
     'science',
@@ -25,6 +25,7 @@ class HomeState extends State<Home> {
     'entertainment',
     'health',
   ];
+  List nodata = ['Check Your Connection'];
   List appbartitle = [
     'Daily ',
     'Scientific ',
@@ -46,34 +47,39 @@ class HomeState extends State<Home> {
   Widget build(BuildContext context) {
     var w = MediaQuery.of(context).size.width;
     return Scaffold(
-        floatingActionButton: FloatingActionButton(
-            child: const Icon(Icons.near_me),
-            onPressed: () {
-              setState(() {
-                if (index == 6) {
-                  index = 0;
-                } else {
-                  index++;
-                }
-              });
-            }),
-        backgroundColor: AppColors.black,
-        appBar: appbar(
-          title: appbartitle[index],
-        ),
-        body: Column(
-          children: [
-            MySearchBar(
-              category: category[index],
-            ),
-            Expanded(
-              child: SizedBox(
-                  width: w,
-                  child: FutureBuilder<List>(
-                    future: fetchnews(category[index]),
-                    builder: (context, snapshot) {
-                      if (snapshot.hasData) {
-                        return ListView.builder(
+      floatingActionButton: FloatingActionButton(
+        child: const Icon(Icons.near_me),
+        onPressed: () {
+          setState(
+            () {
+              if (index == 6) {
+                index = 0;
+              } else {
+                index++;
+              }
+            },
+          );
+        },
+      ),
+      backgroundColor: AppColors.black,
+      appBar: appbar(
+        title: appbartitle[index],
+      ),
+      body: news != Future(() => [])
+          ? Column(
+              children: [
+                MySearchBar(
+                  category: category[index],
+                ),
+                Expanded(
+                  child: SizedBox(
+                    width: w,
+                    child: FutureBuilder<List>(
+                      initialData: [nodata],
+                      future: fetchnews(category[index]),
+                      builder: (context, snapshot) {
+                        if (snapshot.hasData) {
+                          return ListView.builder(
                             itemCount: snapshot.data!.length,
                             itemBuilder: (context, index) {
                               return NewsBox(
@@ -86,20 +92,25 @@ class HomeState extends State<Home> {
                                         ['description']
                                     .toString(),
                               );
-                            });
-                      } else if (snapshot.hasError) {
-                        return Text("${snapshot.error}");
-                      }
+                            },
+                          );
+                        } else if (snapshot.hasError) {
+                          return Text("${snapshot.error}");
+                        }
 
-                      // By default, show a loading spinner.
-                      return Center(
+                        // By default, show a loading spinner.
+                        return Center(
                           child: CircularProgressIndicator(
-                        color: AppColors.primary,
-                      ));
-                    },
-                  )),
-            ),
-          ],
-        ));
+                            color: AppColors.primary,
+                          ),
+                        );
+                      },
+                    ),
+                  ),
+                ),
+              ],
+            )
+          : Text('a'),
+    );
   }
 }
