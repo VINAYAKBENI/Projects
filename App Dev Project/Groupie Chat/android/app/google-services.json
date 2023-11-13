@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "389924872258",
+    "project_id": "groupie-55465",
+    "storage_bucket": "groupie-55465.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:389924872258:android:d709c51fa64e0a4c278ddb",
+        "android_client_info": {
+          "package_name": "com.Beni.groupie"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC1f3Ha4BllUdmUeSPVuq_DB8vP_PxcK2g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:389924872258:android:8f356375762ad32f278ddb",
+        "android_client_info": {
+          "package_name": "com.example.groupie"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC1f3Ha4BllUdmUeSPVuq_DB8vP_PxcK2g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
