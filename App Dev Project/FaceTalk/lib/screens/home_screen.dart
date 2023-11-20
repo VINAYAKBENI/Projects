@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:zoom_replica/resources/auth_methods.dart';
 import 'package:zoom_replica/screens/history_meeting_screen.dart';
+import 'package:zoom_replica/screens/logout_screen.dart';
 import 'package:zoom_replica/screens/meeting_screen.dart';
 import 'package:zoom_replica/utils/colors.dart';
-import 'package:zoom_replica/widgets/custom_buttom.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -29,7 +28,7 @@ class _HomeScreenState extends State<HomeScreen> {
         style: TextStyle(fontWeight: FontWeight.bold, fontSize: 28),
       ),
     ),
-    CustomButton(text: 'Log Out', onpressed: () => AuthMethods().signOut())
+    const LogOutScreen(),
   ];
 
   @override
