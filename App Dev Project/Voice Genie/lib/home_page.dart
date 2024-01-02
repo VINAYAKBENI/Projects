@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'package:voice_genie/feature_box.dart';
 import 'package:voice_genie/openai_service.dart';
 import 'package:voice_genie/pallete.dart';

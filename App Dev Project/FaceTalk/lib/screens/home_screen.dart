@@ -37,7 +37,7 @@ class _HomeScreenState extends State<HomeScreen> {
       appBar: AppBar(
         elevation: 0,
         backgroundColor: backgroundColor,
-        title: const Text('Chat & Meet'),
+        title: const Text('Face Talk'),
         centerTitle: true,
       ),
       body: pages[_page],

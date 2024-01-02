@@ -1,0 +1,53 @@
+import 'package:promarketplace/constants/global_variables.dart';
+import 'package:promarketplace/features/admin/services/admin_services.dart';
+import 'package:promarketplace/features/admin/widgets/admin_button.dart';
+import 'package:promarketplace/providers/user_provider.dart';
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+class BelowAppBarAdmin extends StatelessWidget {
+  const BelowAppBarAdmin({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    final user = Provider.of<UserProvider>(context).user;
+
+    return Container(
+      decoration: const BoxDecoration(
+        gradient: GlobalVariables.appBarGradient,
+      ),
+      padding: const EdgeInsets.only(left: 40, right: 10, bottom: 10),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          RichText(
+            text: TextSpan(
+              text: 'Hello, ',
+              style: const TextStyle(
+                fontSize: 22,
+                color: Colors.black,
+              ),
+              children: [
+                TextSpan(
+                  text: user.name,
+                  style: const TextStyle(
+                    fontSize: 22,
+                    color: Colors.black,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          const SizedBox(
+            width: 45,
+          ),
+          AdminButton(
+            text: 'Log Out',
+            onTap: () => AdminServices().logOut(context),
+          ),
+        ],
+      ),
+    );
+  }
+}

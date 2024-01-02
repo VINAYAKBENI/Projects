@@ -15,15 +15,19 @@ class HistoryMeetingScreen extends StatelessWidget {
             child: CircularProgressIndicator(),
           );
         }
-        return ListView.builder(
-          itemCount: (snapshot.data! as dynamic).docs.length,
-          itemBuilder: (context, index) => ListTile(
-            title: Text(
-                "Room Name: ${(snapshot.data! as dynamic).docs[index]['meetingName']}"),
-            subtitle: Text(
-                'Joined on ${DateFormat.yMMMd().format((snapshot.data! as dynamic).docs[index]['createdAt'].toDate())}'),
-          ),
-        );
+        if (snapshot.hasData) {
+          return ListView.builder(
+            itemCount: (snapshot.data! as dynamic).docs.length,
+            itemBuilder: (context, index) => ListTile(
+              title: Text(
+                  "Room Name: ${(snapshot.data! as dynamic).docs[index]['meetingName']}"),
+              subtitle: Text(
+                  'Joined on ${DateFormat.yMMMd().format((snapshot.data! as dynamic).docs[index]['createdAt'].toDate())}'),
+            ),
+          );
+        } else {
+          return const Center(child: Text('Empty List'));
+        }
       },
     );
   }
